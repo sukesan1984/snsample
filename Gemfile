@@ -10,6 +10,9 @@ gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
+# settings
+gem 'config'
+
 # dotenv
 gem 'dotenv-rails'
 
