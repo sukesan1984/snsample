@@ -1,2 +1,23 @@
 h1 Posts#new
-p Find me in app/views/posts/new.html.slim
+.panel.panel-default.posts
+  .panel-heading
+    h4 タイムライン投稿
+  .panel-body
+    = form_for(@post, url: posts_path(@post), html: { role: "form" }) do |f|
+      .form-group
+        = f.label :comment
+        br
+        = f.text_field :comment, title: "コメント"
+      .form-group
+        = f.label :restriction
+        br
+        = f.radio_button :restriction, 0, {:checked => true}
+        = f.label :restriction, "全体公開", value: 0
+        = f.radio_button :restriction, 1
+        = f.label :restriction, "フォロワーのみ", value: 1
+        = f.radio_button :restriction, 2
+        = f.label :restriction, "自分のみ", value: 2
+      = f.submit("投稿", class: "btn btn-primary")
+
+
+
