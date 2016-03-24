@@ -30,6 +30,6 @@ RSpec.describe User, type: :model do
       password: 'password'
     )
     user.valid?
-    expect(user.errors[:last_name]).to include("is too long (maximum is 20 characters)")
+    expect(user.errors[:last_name]).to include("は20文字以内で入力してください")
   end
 end

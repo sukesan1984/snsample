@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+
+  get 'posts/new'
+
+  get 'posts/show'
+
+  get 'posts/edit'
+
   devise_for :users, :controllers => {
     :sessions => 'users/sessions'
   }
@@ -11,6 +19,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root to: "home#index"
+
+  resources :posts
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
