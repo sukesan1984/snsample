@@ -23,8 +23,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'slim-rails'
 gem 'html2slim'
 
+# bootstrap
+gem 'bootstrap-sass', '~> 3.1.1.1'
+gem 'bootstrap-sass-extras', '~> 0.0.6'
+
 # devise
 gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
