@@ -40,9 +40,16 @@ class Post < ActiveRecord::Base
     return self
   end
 
-  # 全体公開されているpostを新しい順に取得
+  # 全体公開されているpost
   def self.find_public_posts
-    posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE)
+    posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).preload(:user)
     return posts
+  end
+
+  # 全体公開されているpostと自身の投稿を新しい順に取得
+  def self.find_public_posts_and_user_id(user_id)
+    posts = Post.all.order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).preload(:user)
+    filtered_posts = posts.select { |post| post.restriction == restriction_statuses[:public_post] || post.user_id == user_id }
+    return filtered_posts
   end
 end

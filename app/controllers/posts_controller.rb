@@ -2,9 +2,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
   def index
     if current_user.nil?
-      @posts = Post.find_public_posts.preload(:user)
+      @posts = Post.find_public_posts
     else
-      @posts = Post.find_public_posts.preload(:user)
+      @posts = Post.find_public_posts_and_user_id(current_user.id)
     end
   end
 
