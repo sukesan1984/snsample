@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324061316) do
+ActiveRecord::Schema.define(version: 20160325053530) do
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4,               null: false
-    t.string   "comment",     limit: 255,             null: false
-    t.integer  "restriction", limit: 1,               null: false
-    t.integer  "group_id",    limit: 4,   default: 0, null: false
-    t.integer  "photo_id1",   limit: 4,   default: 0, null: false
-    t.integer  "photo_id2",   limit: 4,   default: 0, null: false
-    t.integer  "photo_id3",   limit: 4,   default: 0, null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.integer  "user_id",     limit: 4,                 null: false
+    t.text     "comment",     limit: 65535,             null: false
+    t.integer  "restriction", limit: 1,                 null: false
+    t.integer  "group_id",    limit: 4,     default: 0, null: false
+    t.integer  "photo_id1",   limit: 4,     default: 0, null: false
+    t.integer  "photo_id2",   limit: 4,     default: 0, null: false
+    t.integer  "photo_id3",   limit: 4,     default: 0, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "users", force: :cascade do |t|

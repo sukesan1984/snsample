@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  user_id     :integer          not null
-#  comment     :string(255)      not null
+#  comment     :text(65535)      not null
 #  restriction :integer          not null
 #  group_id    :integer          default("0"), not null
 #  photo_id1   :integer          default("0"), not null
