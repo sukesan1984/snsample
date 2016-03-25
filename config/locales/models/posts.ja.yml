@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        comment: "投稿内容"
+        restriction: "公開範囲"
