@@ -24,7 +24,7 @@ class Post < ActiveRecord::Base
 
   # 全体公開されているpostを新しい順に取得
   def self.find_public_posts
-    posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).includes(:user)
+    posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE)
     return posts
   end
 end
