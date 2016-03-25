@@ -22,6 +22,15 @@ class Post < ActiveRecord::Base
   enum restriction_status: { public_post: 0, follower_only: 1, self_only: 2 } 
   MAX_POSTS_FOR_ONE_PAGE = 20
 
+  def update_attributes_by_user_id(post_params, user_id)
+    if self.user_id == user_id
+      self.update_attributes(post_params)
+    else
+      errors.add :base, :cant_update_others_post
+    end
+    return self
+  end
+
   def destroy_by_user_id(user_id)
     if self.user_id == user_id
       destroy!

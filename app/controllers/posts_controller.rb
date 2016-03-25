@@ -20,6 +20,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+    @post.update_attributes_by_user_id(post_params, current_user.id)
+    if @post.errors.empty?
+      respond_to do |format|
+        format.html { redirect_to posts_url }
+        format.json { head :no_content }
+      end
+    else
+      render 'edit'
+    end
+  end
+
   def new
     @post = Post.new
   end
@@ -28,6 +41,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def destroy
@@ -40,5 +54,10 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  private 
+    def post_params
+      params.require(:post).permit(:comment, :restriction)
+    end
 end
 
