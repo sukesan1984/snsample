@@ -17,5 +17,23 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  [0,1,2].each do |restriction|
+    it "is valid with restriction:#{restriction}" do
+      post = Post.new(
+        user_id: 1,
+        comment: "hoge",
+        restriction: restriction
+      )
+      expect(post).to be_valid
+    end
+  end
+  it "is invalid with restriction: 3" do
+    post = Post.new(
+      user_id: 1,
+      comment: "hoge",
+      restriction: 3
+    )
+    post.valid?
+    expect(post.errors[:restriction]).to include("は不正な値です")
+  end
 end
