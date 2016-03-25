@@ -1,2 +1,6 @@
 h1 Posts#edit
-p Find me in app/views/posts/edit.html.slim
+= error_messages!(@post)
+.panel.panel-default.posts
+  .panel-heading
+    h4 タイムライン編集
+  = render 'posts/form'

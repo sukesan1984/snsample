@@ -36,4 +36,24 @@ RSpec.describe Post, type: :model do
     post.valid?
     expect(post.errors[:restriction]).to include("は不正な値です")
   end
+
+  it 'can be destroyed by my self' do
+    post = Post.new(
+      user_id: 1,
+      comment: "hoge",
+      restriction: 0
+    )
+    post.destroy_by_user_id(1)
+    expect(post).to be_valid
+  end
+
+  it 'cant be destroyed by others' do
+    post = Post.new(
+      user_id: 1,
+      comment: "hoge",
+      restriction: 0
+    )
+    post.destroy_by_user_id(2)
+    expect(post.errors[:base]).to include("自身の投稿のみが削除できます")
+  end
 end

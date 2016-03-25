@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
+  let(:post) { FactoryGirl.create(:post) }
+  let(:user) { FactoryGirl.create(:user) }
 
   describe "GET #index" do
     it "returns http success" do
@@ -20,15 +22,19 @@ RSpec.describe PostsController, type: :controller do
   describe "GET #show" do
     it "returns http success" do
       sign_in
-      get :show
+      post
+      get :show, FactoryGirl.attributes_for(:post)
       expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #edit" do
     it "returns http success" do
-      sign_in
-      get :edit
+      post
+      user
+      user = User.find_by(id: 1)
+      sign_in(user)
+      get :edit, FactoryGirl.attributes_for(:post)
       expect(response).to have_http_status(:success)
     end
   end

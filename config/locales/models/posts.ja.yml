@@ -4,3 +4,11 @@ ja:
       post:
         comment: "投稿内容"
         restriction: "公開範囲"
+    errors:
+      models:
+        post:
+          attributes:
+            base:
+              cant_destroy_others_post: "自身の投稿のみが削除できます"
+              cant_update_others_post: "自身の投稿のみが編集できます"
+
