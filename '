@@ -1,6 +1,0 @@
-h1 Posts#new
-.panel.panel-default.posts
-  .panel-heading
-    h4
-      タイムライン投稿
-

@@ -15,16 +15,16 @@
 #
 
 class Post < ActiveRecord::Base
+  belongs_to :user
   validates :user_id, presence: true
   VALID_RESTRICTION_REGEX = /\A0|1|2\z/i
   validates :restriction, presence: true, format: { with: VALID_RESTRICTION_REGEX }
   enum restriction_status: { public_post: 0, follower_only: 1, self_only: 2 } 
-
   MAX_POSTS_FOR_ONE_PAGE = 20
 
   # 全体公開されているpostを新しい順に取得
   def self.find_public_posts
-    posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE)
+    posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).includes(:user)
     return posts
   end
 end
