@@ -9,7 +9,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    p params[:post]
     @post = Post.new(
       user_id: current_user.id,
       comment: params[:post][:comment],
@@ -25,6 +24,15 @@ class PostsController < ApplicationController
   end
 
   def edit
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+      format.json { head :no_content }
+    end
   end
 end
 
