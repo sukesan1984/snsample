@@ -1,2 +1,17 @@
 h1 Posts#index
-p Find me in app/views/posts/index.html.slim
+.panel.panel-default.posts
+  .panel-heading 投稿一覧
+  table.table 
+    thead
+      tr
+        th 投稿者
+        th コメント
+        th 投稿時間
+
+    tbody
+      - @posts.each do |post|
+        tr
+          td = post.user_id
+          td = post.comment
+          td = post.created_at
+
