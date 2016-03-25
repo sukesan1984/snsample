@@ -22,6 +22,15 @@ class Post < ActiveRecord::Base
   enum restriction_status: { public_post: 0, follower_only: 1, self_only: 2 } 
   MAX_POSTS_FOR_ONE_PAGE = 20
 
+  def destroy_by_user_id(user_id)
+    if self.user_id == user_id
+      destroy!
+    else
+      errors.add :base, :cant_destroy_others_post
+    end
+    return self
+  end
+
   # 全体公開されているpostを新しい順に取得
   def self.find_public_posts
     posts = Post.where("restriction = ?", Post.restriction_statuses[:public_post]).order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE)

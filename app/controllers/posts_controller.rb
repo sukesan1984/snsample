@@ -32,10 +32,12 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+    @post.destroy_by_user_id(current_user.id)
+    if @post.errors.empty?
+      respond_to do |format|
+        format.html { redirect_to posts_url }
+        format.json { head :no_content }
+      end
     end
   end
 end
