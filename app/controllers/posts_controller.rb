@@ -38,10 +38,16 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def edit
     @post = Post.find(params[:id])
+    if !@post.self?(current_user.id)
+      @post.errors.add :base, :cant_update_others_post
+      render 'show'
+      return
+    end
   end
 
   def destroy
