@@ -3,7 +3,7 @@ h1 Comments#new
   .panel-heading
     h4 コメント投稿
   .panel-body
-    = form_for(@comment, url: post_comments_path(@post_id), html: { role: "form"}) do |f|
+    = form_for(@comment, url: post_comments_path(@post), html: { role: "form"}) do |f|
       .form-group
         = f.label :comment
         br
