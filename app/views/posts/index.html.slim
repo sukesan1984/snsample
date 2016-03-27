@@ -9,6 +9,7 @@ h1 Posts#index
         th 投稿時間
         th 編集
         th 削除
+        th 返信
     tbody
       - @posts.each do |post|
         tr
@@ -17,4 +18,5 @@ h1 Posts#index
           td = post.created_at
           td = link_to('編集', edit_post_path(post))
           td = link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }
+          td = link_to('返信する', post_comments_path(post))
 
