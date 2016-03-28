@@ -38,7 +38,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id]).prelad(:user)
+    #post = Post.where('id = ?', params[:id])
+    @comments = Comment.where('post_id = ?', @post.id).preload(:user)
+    @comments.each do |comment|
+      p comment.user.last_name
+    end
   end
 
   def edit

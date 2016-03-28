@@ -1,3 +1,14 @@
 h1 Posts#show
 = error_messages!(@post)
+strong 投稿: #{@post.comment}
+br
+strong 投稿者: #{@post.user.last_name}#{@post.user.first_name}
+
+h2 Comments
+- @comments.each do |comment|
+  p コメント投稿者:
+    #{comment.user.last_name}#{comment.user.first_name}
+
+  p Comment:
+    #{comment.comment}
 = link_to('戻る', '/posts')
