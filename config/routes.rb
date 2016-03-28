@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   get 'users', to: "users#index"
   get 'users/index'
+
+  post 'follow', to: "relationships#create"
+  delete 'unfollow/:user_id', to: "relationships#destroy"
+
   devise_for :users, :controllers => {
     :sessions => 'users/sessions'
   }
@@ -24,6 +28,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  #resources :relationships, only:[:create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
