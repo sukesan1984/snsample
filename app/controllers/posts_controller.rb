@@ -39,12 +39,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    #post = Post.where('id = ?', params[:id])
     @comments = Comment.where('post_id = ?', @post.id).preload(:user)
   end
 
   def edit
     @post = Post.find(params[:id])
+    @comments = Comment.where('post_id = ?', @post.id).preload(:user)
     if !@post.self?(current_user.id)
       @post.errors.add :base, :cant_update_others_post
       render 'show'
