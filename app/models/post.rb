@@ -16,6 +16,7 @@
 
 class Post < ActiveRecord::Base
   belongs_to :user
+  has_many :comments
   validates :user_id, presence: true
   VALID_RESTRICTION_REGEX = /\A0|1|2\z/i
   validates :restriction, presence: true, format: { with: VALID_RESTRICTION_REGEX }
