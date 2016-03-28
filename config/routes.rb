@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
+
   get 'posts/index'
-
   get 'posts/new'
-
   get 'posts/show'
-
   get 'posts/edit'
 
+  get 'users', to: "users#index"
+  get 'users/index'
   devise_for :users, :controllers => {
     :sessions => 'users/sessions'
   }
-  get 'home/index'
 
+
+  get 'home/index'
   get 'home/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
