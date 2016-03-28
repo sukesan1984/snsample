@@ -32,4 +32,19 @@ FactoryGirl.define do
     email "test@test.com"
     password "testtesttest"
   end
+  factory :archer, class: User do
+    id 2
+    last_name "archer"
+    first_name "san"
+    email "archer@archer.com"
+    password "archerarcherarcher"
+  end
+
+  factory :michael, class: User do
+    id 3
+    last_name "michael"
+    first_name "san"
+    email "michael@michael.com"
+    password "michaelmichaelmichael"
+  end
 end
