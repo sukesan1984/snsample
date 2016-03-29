@@ -19,4 +19,4 @@ h1 Posts#index
           td = link_to('編集', edit_post_path(post))
           td = link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }
           td = link_to('返信する', new_post_comment_path(post))
-
+= link_to 'ユーザー一覧', '/users'
