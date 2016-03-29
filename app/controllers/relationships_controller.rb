@@ -10,6 +10,7 @@ class RelationshipsController < ApplicationController
     else
       current_user.follow(@target_user)
     end
+    redirect_to '/users'
   end
 
   # 対象のUserをunfollowする
@@ -20,5 +21,6 @@ class RelationshipsController < ApplicationController
     else
       raise 'not following'
     end
+    redirect_to '/users'
   end
 end
