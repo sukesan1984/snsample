@@ -11,7 +11,7 @@ RSpec.describe RelationshipsController, type: :controller do
     michael
     sign_in(user)
     post :create, user_id: 3
-    expect(response).to have_http_status(:success)
+    expect(response).to redirect_to '/users'
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe RelationshipsController, type: :controller do
     relationship
     sign_in(user)
     delete :destroy, user_id: 2
-    expect(response).to have_http_status(:success)
+    expect(response).to redirect_to '/users'
     end
   end
 end
