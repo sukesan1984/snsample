@@ -4,7 +4,9 @@ class PostsController < ApplicationController
     if current_user.nil?
       @posts = Post.find_public_posts
     else
-      @posts = Post.find_public_posts_and_user_id(current_user.id)
+      user_ids = current_user.following.pluck(:id)
+      user_ids.push current_user.id
+      @posts = Post.find_public_posts_by_user_ids(user_ids)
     end
   end
 
