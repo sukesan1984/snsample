@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
+
   get 'posts/index'
-
   get 'posts/new'
-
   get 'posts/show'
-
   get 'posts/edit'
+
+  get 'users', to: "users#index"
+  get 'users/index'
+
+  post 'follow', to: "relationships#create"
+  delete 'unfollow/:user_id', to: "relationships#destroy"
 
   devise_for :users, :controllers => {
     :sessions => 'users/sessions'
   }
-  get 'home/index'
 
+
+  get 'home/index'
   get 'home/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -23,6 +28,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  #resources :relationships, only:[:create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

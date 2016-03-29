@@ -13,6 +13,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_posts_on_restriction             (restriction)
+#  index_posts_on_user_id_and_created_at  (user_id,created_at)
+#
 
 class Post < ActiveRecord::Base
   belongs_to :user
@@ -55,6 +60,13 @@ class Post < ActiveRecord::Base
   def self.find_public_posts_and_user_id(user_id)
     posts = Post.all.order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).preload(:user)
     filtered_posts = posts.select { |post| post.restriction == restriction_statuses[:public_post] || post.user_id == user_id }
+    return filtered_posts
+  end
+
+  # 特定のユーザーのフォロワー・全体公開の投稿を新しい順に取得
+  def self.find_public_posts_by_user_ids(user_ids)
+    posts = Post.where('user_id in (?)', user_ids).from("posts force index(index_posts_on_user_id_and_created_at)").order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).preload(:user)
+    filtered_posts = posts.select { |post| post.restriction != restriction_statuses[:self_only] }
     return filtered_posts
   end
 end

@@ -1,0 +1,20 @@
+h1 Users#index
+.panel.panel-default.users
+  .panel-heading ユーザー一覧
+  table.table
+    thead
+      tr
+        th 氏
+        th 名
+        th フォロー
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.last_name
+          td = user.first_name
+          - if @current_user.id == user.id
+            td 自分
+          - elsif @current_user.following?(user)
+            td = link_to 'アンフォローする', "unfollow/#{user.id}", method: :delete
+          - else
+            td = link_to 'フォローする', follow_path(user_id: user.id), method: :post

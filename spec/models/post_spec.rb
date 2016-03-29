@@ -13,6 +13,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_posts_on_restriction             (restriction)
+#  index_posts_on_user_id_and_created_at  (user_id,created_at)
+#
 
 require 'rails_helper'
 

@@ -27,6 +27,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:archer) { FactoryGirl.create(:user) }
+  let(:michael) { FactoryGirl.create(:michael) }
   it 'is invalid with last_name over 20 lengths'  do
     user = User.new(
       last_name: 'abcdefghijklmnopqrstuxyiw',
@@ -36,5 +38,33 @@ RSpec.describe User, type: :model do
     )
     user.valid?
     expect(user.errors[:last_name]).to include("は20文字以内で入力してください")
+  end
+
+  it 'should not follow' do
+    michael
+    archer
+    expect(michael.following?(archer)).to eq(false)
+  end
+
+  it 'should follow' do
+    michael
+    archer
+    michael.follow(archer)
+    expect(michael.following?(archer)).to eq(true)
+  end
+
+  it 'should unfollow' do
+    michael
+    archer
+    michael.follow(archer)
+    michael.unfollow(archer)
+    expect(michael.following?(archer)).to eq(false)
+  end
+
+  it 'should follow and get followers' do
+    michael
+    archer
+    michael.follow(archer)
+    expect(archer.followers.include?(michael)).to eq(true)
   end
 end
