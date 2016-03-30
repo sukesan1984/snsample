@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require react
 //= require react_ujs
+//= require react_bootstrap
 //= require components
 //= require_tree .
 //= require marked

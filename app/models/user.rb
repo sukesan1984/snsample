@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :post_likes, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -45,8 +47,21 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, length: {maximum: 20}
   validates :first_name, presence: true, length: {maximum: 20}
 
+  def like?(target)
+    target.liker.include?(self)
+  end
+
+  # ライクする
+  def like(target)
+    target.likes.create!(user_id: self.id)
+  end
+
+  def unlike(target)
+    target.likes.find_by(user_id: self.id).destroy
+  end
+
   def follow(other_user)
-    self.active_relationships.create(followed_id: other_user.id)
+    self.active_relationships.create!(followed_id: other_user.id)
   end
 
   def unfollow(other_user)

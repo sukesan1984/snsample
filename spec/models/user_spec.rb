@@ -27,6 +27,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:post) { FactoryGirl.create(:post) }
+  let(:user) { FactoryGirl.create(:user) }
   let(:archer) { FactoryGirl.create(:user) }
   let(:michael) { FactoryGirl.create(:michael) }
   it 'is invalid with last_name over 20 lengths'  do
@@ -67,4 +69,26 @@ RSpec.describe User, type: :model do
     michael.follow(archer)
     expect(archer.followers.include?(michael)).to eq(true)
   end
+
+  it 'should already like not' do
+    post
+    user
+    expect(user.like?(post)).to eq(false)
+  end
+
+  it 'should like' do
+    post
+    user
+    user.like(post)
+    expect(user.like?(post)).to eq(true)
+  end
+
+  it 'should unlike' do
+    post
+    user
+    user.like(post)
+    user.unlike(post)
+    expect(user.like?(post)).to eq(false)
+  end
 end
+

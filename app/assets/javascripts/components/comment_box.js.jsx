@@ -4,7 +4,7 @@ var CommentBox = React.createClass({
       url: this.props.url,
       data: 'json',
       success: function (result) {
-        this.setState( {data: result.data} );
+        this.setState( {data: result} );
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -56,10 +56,14 @@ var CommentForm = React.createClass({
 var Comment = React.createClass({
     render: function() {
         var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+        var ListGroupItem = ReactBootstrap.ListGroupItem
         return (
             <div className="comment">
-                 <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
-                 {this.props.author}
+                 <ListGroupItem>
+                     <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+                     {this.props.author}
+                     <a href="">いいね</a>
+                 </ListGroupItem>
             </div>
         );
     }
