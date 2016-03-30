@@ -20,7 +20,7 @@ RSpec.describe PostLikesController, type: :controller do
   describe "GET #destroy" do
     it "returns http success" do
       sign_in
-      get :destroy, id: 1, post_id: 1
+      get :destroy, post_id: 1
       expect(response).to have_http_status(:success)
     end
   end

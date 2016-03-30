@@ -48,7 +48,6 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true, length: {maximum: 20}
 
   def like?(target)
-    p target.liker
     target.liker.include?(self)
   end
 

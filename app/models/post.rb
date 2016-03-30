@@ -68,7 +68,7 @@ class Post < ActiveRecord::Base
 
   # 特定のユーザーのフォロワー・全体公開の投稿を新しい順に取得
   def self.find_public_posts_by_user_ids(user_ids)
-    posts = Post.where('user_id in (?)', user_ids).from("posts force index(index_posts_on_user_id_and_created_at)").order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).preload(:user)
+    posts = Post.where('user_id in (?)', user_ids).from("posts force index(index_posts_on_user_id_and_created_at)").order(created_at: :desc).limit(MAX_POSTS_FOR_ONE_PAGE).preload(:user).preload(:liker)
     filtered_posts = posts.select { |post| post.restriction != restriction_statuses[:self_only] }
     return filtered_posts
   end

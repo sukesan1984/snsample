@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
-    resources :likes, only:[:index, :create, :destroy], :controller => :post_likes
+    resources :likes, only:[:index, :create], :controller => :post_likes
+    delete 'likes', to: 'post_likes#destroy'
   end
 
   #resources :relationships, only:[:create, :destroy]
