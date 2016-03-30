@@ -40,4 +40,8 @@ h1 Posts#index
                 = react_component( \
                   'CommentBox', \
                   url: "/api/v1/posts/#{post.id}/comments.json")
-= link_to 'ユーザー一覧', '/users'
+.list-group
+  .list-group-item
+    = link_to '新規投稿', '/posts/new'
+  .list-group-item
+    = link_to 'ユーザー一覧', '/users'
