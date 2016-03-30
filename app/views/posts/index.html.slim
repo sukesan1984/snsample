@@ -10,6 +10,7 @@ h1 Posts#index
         th 編集
         th 削除
         th 返信
+        th いいね
         th コメント
     tbody
       - @posts.each do |post|
@@ -20,6 +21,7 @@ h1 Posts#index
           td = link_to('編集', edit_post_path(post))
           td = link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }
           td = link_to('返信する', new_post_comment_path(post))
+          td = link_to('いいね', '')
           td 
             .btn.btn-default data-toggle="collapse" href="#collapse-#{post.id}" 表示・非表示
             .collapse[id="collapse-#{post.id}"]

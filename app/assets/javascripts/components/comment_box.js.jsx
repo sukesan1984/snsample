@@ -60,6 +60,7 @@ var Comment = React.createClass({
             <div className="comment">
                  <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
                  {this.props.author}
+                 <a href="">いいね</a>
             </div>
         );
     }
