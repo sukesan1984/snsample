@@ -5,11 +5,12 @@ h1 Posts#index
     thead
       tr
         th 投稿者
-        th コメント
+        th 内容
         th 投稿時間
         th 編集
         th 削除
         th 返信
+        th コメント
     tbody
       - @posts.each do |post|
         tr
@@ -19,4 +20,11 @@ h1 Posts#index
           td = link_to('編集', edit_post_path(post))
           td = link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }
           td = link_to('返信する', new_post_comment_path(post))
+          td 
+            .btn.btn-default data-toggle="collapse" href="#collapse-#{post.id}" 表示・非表示
+            .collapse[id="collapse-#{post.id}"]
+              .well
+                = react_component( \
+                  'CommentBox', \
+                  url: "/api/v1/posts/#{post.id}.json")
 = link_to 'ユーザー一覧', '/users'
