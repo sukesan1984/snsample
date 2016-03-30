@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
-      resources :comments
-      resources :posts
+      resources :comments, only:[:index]
+      resources :posts, only:[:index]
     end
   end
+
+  mount API::Root => '/'
+
 
   get 'posts/index'
   get 'posts/new'

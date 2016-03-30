@@ -54,6 +54,9 @@ gem 'react-rails', '~> 1.0'
 # write with markdown
 gem 'marked-rails'
 
+# for web-api
+gem 'grape'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
