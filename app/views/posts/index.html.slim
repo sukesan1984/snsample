@@ -23,14 +23,16 @@ h1 Posts#index
           td = link_to('編集', edit_post_path(post))
           td = link_to '削除', post, method: :delete, data: { confirm: '本当に削除しますか？' }
           td = link_to('返信する', new_post_comment_path(post))
-          - if @current_user.like?(post)
+          - if @current_user.nil?
+            td ログインしてください。
+          - elsif @current_user.like?(post)
             td = link_to('いいねを外す', post_likes_path(post), method: :delete)
           - else
             td = link_to('いいね', post_likes_path(post), method: :post)
           td = post.likes.count 
           td = react_component( \
             'LikeField', \
-            url: "api/v1/posts/#{post.id}/post_likes.json")
+            url: "api/v1/posts/#{post.id}/likes.json")
           td 
             .btn.btn-default data-toggle="collapse" href="#collapse-#{post.id}" 表示・非表示
             .collapse[id="collapse-#{post.id}"]

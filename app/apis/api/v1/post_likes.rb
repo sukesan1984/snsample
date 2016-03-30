@@ -8,7 +8,7 @@ module API
           requires :post_id, type: Integer, desc: 'post_id'
         end
         resource ':post_id' do
-          get :post_likes do
+          get :likes do
             post = Post.find(params[:post_id])
             return post.likes.map { |like| "#{like.user.last_name}#{like.user.first_name}" }
           end
