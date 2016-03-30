@@ -4,7 +4,7 @@ var CommentBox = React.createClass({
       url: this.props.url,
       data: 'json',
       success: function (result) {
-        this.setState( {data: result.data} );
+        this.setState( {data: result} );
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());

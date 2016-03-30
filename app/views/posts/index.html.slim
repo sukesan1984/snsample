@@ -33,5 +33,5 @@ h1 Posts#index
               .well
                 = react_component( \
                   'CommentBox', \
-                  url: "/api/v1/posts/#{post.id}.json")
+                  url: "/api/v1/posts/#{post.id}/comments.json")
 = link_to 'ユーザー一覧', '/users'

@@ -5,6 +5,7 @@ module API
       format :json
 
       mount API::V1::PostLikes
+      mount API::V1::Posts
     end
   end
 end
