@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :api, format: 'json' do
     namespace :v1 do
       resources :comments
@@ -34,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    resources :likes, only:[:index, :create, :destroy], :controller => :post_likes
   end
 
   #resources :relationships, only:[:create, :destroy]
