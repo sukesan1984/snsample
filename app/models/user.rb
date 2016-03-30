@@ -47,8 +47,22 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, length: {maximum: 20}
   validates :first_name, presence: true, length: {maximum: 20}
 
+  def like?(target)
+    p target.liker
+    target.liker.include?(self)
+  end
+
+  # ライクする
+  def like(target)
+    target.likes.create!(user_id: self.id)
+  end
+
+  def unlike(target)
+    target.likes.find_by(user_id: self.id).destroy
+  end
+
   def follow(other_user)
-    self.active_relationships.create(followed_id: other_user.id)
+    self.active_relationships.create!(followed_id: other_user.id)
   end
 
   def unfollow(other_user)

@@ -22,7 +22,8 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments
-  has_many :post_likes
+  has_many :likes, class_name: "PostLike", dependent: :destroy
+  has_many :liker, through: :likes, source: :user
 
   validates :user_id, presence: true
   VALID_RESTRICTION_REGEX = /\A0|1|2\z/i
