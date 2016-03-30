@@ -1,9 +1,6 @@
 class PostLikesController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-  end
-
   def create
     post_id = params[:post_id]
     post = Post.find(post_id)

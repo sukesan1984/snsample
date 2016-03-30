@@ -4,13 +4,6 @@ RSpec.describe PostLikesController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:post) { FactoryGirl.create(:post) }
   let(:post_like) { FactoryGirl.create(:post_like) }
-  describe "GET #index" do
-    it "returns http success" do
-      sign_in
-      get :index, post_id: 1
-      expect(response).to have_http_status(:success)
-    end
-  end
 
   describe "GET #create" do
     it "returns http success" do
