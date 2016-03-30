@@ -12,6 +12,7 @@ h1 Posts#index
         th 返信
         th いいね
         th いいね数
+        th いいねした人
         th コメント
     tbody
       - @posts.each do |post|
@@ -26,7 +27,10 @@ h1 Posts#index
             td = link_to('いいねを外す', post_likes_path(post), method: :delete)
           - else
             td = link_to('いいね', post_likes_path(post), method: :post)
-          td = post.likes.count
+          td = post.likes.count 
+          td = react_component( \
+            'LikeField', \
+            url: "api/v1/posts/#{post.id}/post_likes.json")
           td 
             .btn.btn-default data-toggle="collapse" href="#collapse-#{post.id}" 表示・非表示
             .collapse[id="collapse-#{post.id}"]
