@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  namespace :api, format: 'json' do
+    namespace :v1 do
+      resources :comments
+      resources :posts
+    end
+  end
+
   get 'posts/index'
   get 'posts/new'
   get 'posts/show'
