@@ -12,5 +12,33 @@
 require 'rails_helper'
 
 RSpec.describe PostLike, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'is valid likes defferent post' do
+    PostLike.create(
+      user_id: 1,
+      post_id: 1
+    )
+
+    post_like2 = PostLike.new(
+      user_id: 1,
+      post_id: 2
+    )
+
+    expect(post_like2).to be_valid
+  end
+  it 'is invalid duplicate likes for one post' do
+    PostLike.create(
+      user_id: 1,
+      post_id: 1
+    )
+
+    post_like2 = PostLike.new(
+      user_id: 1,
+      post_id: 1
+    )
+
+    post_like2.valid?
+    expect(post_like2.errors[:post_id]).to include("はすでに存在します")
+  end
+
+
 end

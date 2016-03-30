@@ -32,6 +32,7 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
   end
+
   it "is invalid with restriction: 3" do
     post = Post.new(
       user_id: 1,
