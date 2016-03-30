@@ -175,6 +175,8 @@ GEM
     rake (11.1.1)
     rdoc (4.2.2)
       json (~> 1.4)
+    react-bootstrap-rails (0.28.3)
+      rails (>= 3.1)
     react-rails (1.6.2)
       babel-transpiler (>= 0.7.0)
       coffee-script-source (~> 1.8)
@@ -276,6 +278,7 @@ DEPENDENCIES
   marked-rails
   mysql2
   rails (= 4.2.5.1)
+  react-bootstrap-rails
   react-rails (~> 1.0)
   rspec-rails
   sass-rails (~> 5.0)

@@ -50,6 +50,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate'
 
 gem 'react-rails', '~> 1.0'
+gem 'react-bootstrap-rails'
 
 # write with markdown
 gem 'marked-rails'

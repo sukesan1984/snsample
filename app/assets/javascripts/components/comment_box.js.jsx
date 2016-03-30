@@ -56,11 +56,14 @@ var CommentForm = React.createClass({
 var Comment = React.createClass({
     render: function() {
         var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+        var ListGroupItem = ReactBootstrap.ListGroupItem
         return (
             <div className="comment">
-                 <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
-                 {this.props.author}
-                 <a href="">いいね</a>
+                 <ListGroupItem>
+                     <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+                     {this.props.author}
+                     <a href="">いいね</a>
+                 </ListGroupItem>
             </div>
         );
     }
