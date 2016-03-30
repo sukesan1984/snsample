@@ -12,6 +12,7 @@ class PostLikesController < ApplicationController
     else
       current_user.like(post)
     end
+    redirect_to '/posts'
   end
 
   def destroy
@@ -22,5 +23,6 @@ class PostLikesController < ApplicationController
     else
       raise 'not like this post'
     end
+    redirect_to '/posts'
   end
 end
